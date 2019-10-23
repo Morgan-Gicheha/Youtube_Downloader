@@ -1,0 +1,23 @@
+{% extends'parent.html' %}
+
+{% block content %}
+<!-- adding  jumbotrun -->
+<div class="container">
+    <div class=" jumbotron" >
+        <!-- input area -->
+        <form action="/" method="POST">
+        <div class="input-group">
+            <div class="input-group-prepend">
+            </div> 
+            <input name="users_input_url" type="text" class=" form-control" placeholder="Paste Youtube Url here eg:@https://www.youtube.com/" required><br>
+            <button type="submit" class="btn btn-block btn-success"> Download </button>
+        </div>
+        </form> 
+    </div>
+    <a>anchors to view various streams of the video1</a>
+    <a>anchors to view various streams of the video2</a>
+    <a>anchors to view various streams of the video3</a>
+    <a>anchors to view various streams of the video4</a>
+    </div>
+
+{%endblock%}

@@ -14,6 +14,19 @@ class YD (db.Model):
         db.session.commit()
 
     # python function to download
+    
+    def download_yt(url):
+        print('getting video...')
+        yt = YouTube(url)
+        print('getting streams')
+
+        stream=yt.streams.first()
+        print('getting video title...')
+        print(yt.title)
+        print('downloadint video...')
+        yt.stream.download()
+        print('#####Download complete#####')
+    
 
 
 

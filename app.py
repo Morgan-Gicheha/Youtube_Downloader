@@ -1,12 +1,14 @@
 from flask import Flask,redirect,render_template,request,url_for
 from flask_sqlalchemy import SQLAlchemy
 from pytube import YouTube
+import urllib.request
 import os
 
 app = Flask(__name__)
 
 
 # importing db from download_info.py file
+
 
 
 # creatimg configs
@@ -23,30 +25,35 @@ def create():
 
 @app.route('/', methods=['POST','GET'])
 def home():
-
-    
     if request.method=='POST':
-        url = request.form['users_input_url']
-
-        # print(url)
-        commit_url = YD(url=url)
-        # commited_url = commit_url.create()
-            #youtub function to download
-        def download_func(url):
-            yt = YouTube(url)
-            videos = yt.streams.first()
-            # s=1
-            # for all in videos:
-            #     print(all)
-            #     s=s+1
-            stream.download('/Downloads')
-      
-            
-
-
-        download=download_func(url)
+        recieved_url= request.form['users_input_url']
         print('imeingia')
+        # python function to download video
+        def download_yt(url):
+            print('getting video...')
+            yt = YouTube(url)
+            print('getting streams')
 
+            streams=yt.streams.first()
+            print('getting video title...')
+            # print(yt.title)
+            print('downloadint video...')
+            yt.streams.download()
+            print('#####Download complete#####')
+            
+        download_yt(recieved_url)
+        print("pgrogress")
+    
+        
+      
+        
+
+        return render_template('home.html')
+# route to view videoes available for download
+# @app.route('/home/download' , methods=['GET','POST'])
+# def download_route():
+
+#     return render_template('view_streams_availabe.html')
 
 
         
