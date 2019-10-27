@@ -28,11 +28,12 @@ def home():
             yt = YouTube(url)
             print('getting streams')
 
-            streams=yt.streams.first()
+            stream = yt.streams.first()
             print('getting video title...')
-            # print(yt.title)
+            title = stream.title
+            print(title)
             print('downloading video...')
-            yt.streams.download()
+            stream.download()
             print('#####Download complete#####')
             # calling function to download
         download_video = download_yt(recieved_url)
