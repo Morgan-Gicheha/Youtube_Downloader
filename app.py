@@ -1,4 +1,4 @@
-from flask import Flask,redirect,render_template,request,url_for
+from flask import Flask,redirect,render_template,request,url_for,flash
 from flask_sqlalchemy import SQLAlchemy
 from pytube import YouTube
 
@@ -24,18 +24,21 @@ def home():
         print('url recieved')
         # python function to download video
         def download_yt(url):
-            print('getting video...')
+            # flash("Communiccating with server...","success")
             yt = YouTube(url)
-            print('getting streams')
+            # flash("Getting streams...")
 
             stream = yt.streams.first()
-            print('getting video title...')
+            # flash("Getting video title...")
             title = stream.title
-            print(title)
-            print('downloading video...')
-            stream.download()
-            print('#####Download complete#####')
-            # calling function to download
+            flash(title ,"info")
+            try:
+                # flash('downloading video...')
+                stream.download ()
+                flash('#####Download complete#####')
+                # calling function to download
+            except Exception:
+                flash('error! unable to download site under contruction ', "warning")
         download_video = download_yt(recieved_url)
            
         return render_template('home.html')
